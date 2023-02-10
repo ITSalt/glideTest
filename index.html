@@ -52,7 +52,7 @@
 
       // Loop through the parameters
       for (let param of params) {
-        if (opt[param[0]])
+        if (param[0] in opt)
           opt[param[0]] = param[1];
       }
       if (opt.amount && opt.currency)
