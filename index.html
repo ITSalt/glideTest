@@ -16,7 +16,19 @@
     this.pay = function (opt) {
     var widget = new cp.CloudPayments();
       widget.pay('auth', // или 'charge'
-          opt,
+        { //options
+            publicId: 'pk_2f5e29944443868aca9865d1b4b5e', //id из личного кабинета
+            description: 'Оплата товаров в Glide-магазине', //назначение
+            amount: 100, //сумма
+            currency: 'RUB', //валюта
+            accountId: 'user@example.com', //идентификатор плательщика (необязательно)
+            invoiceId: '1234567', //номер заказа  (необязательно)
+            email: 'user@example.com', //email плательщика (необязательно)
+            skin: "mini", //дизайн виджета (необязательно)
+            data: {
+                myProp: 'myProp value'
+            }
+        },
           {
               onSuccess: function (options) { // success
                   //действие при успешной оплате
