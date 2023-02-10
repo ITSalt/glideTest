@@ -13,22 +13,10 @@
 <body>
   <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
   <script>
-    this.pay = function () {
+    this.pay = function (opt) {
     var widget = new cp.CloudPayments();
       widget.pay('auth', // или 'charge'
-          { //options
-              publicId: 'pk_2f5e29944443868aca9865d1b4b5e', //id из личного кабинета
-              description: 'Оплата товаров в example.com', //назначение
-              amount: 100, //сумма
-              currency: 'RUB', //валюта
-              accountId: 'user@example.com', //идентификатор плательщика (необязательно)
-              invoiceId: '1234567', //номер заказа  (необязательно)
-              email: 'user@example.com', //email плательщика (необязательно)
-              skin: "mini", //дизайн виджета (необязательно)
-              data: {
-                  myProp: 'myProp value'
-              }
-          },
+          opt,
           {
               onSuccess: function (options) { // success
                   //действие при успешной оплате
@@ -43,7 +31,30 @@
       )
     };
     window.onload = (event) => {
-      this.pay();
+      const opt = { //options
+          publicId: 'pk_2f5e29944443868aca9865d1b4b5e', //id из личного кабинета
+          description: '', //назначение
+          amount: 0, //сумма
+          currency: '', //валюта
+          accountId: '', //идентификатор плательщика (необязательно)
+          invoiceId: '', //номер заказа  (необязательно)
+          email: '', //email плательщика (необязательно)
+          skin: "", //дизайн виджета (необязательно)
+          data: {
+              myProp: 'myProp value'
+          }
+      }
+      // Get query string from URL
+      let queryString = window.location.search;
+
+      // Split into key/value pairs
+      let params = new URLSearchParams(queryString);
+
+      // Loop through the parameters
+      for (let param of params) {
+          console.log(param); // Outputs 'key=value'
+      }
+      // this.pay();
     };
   </script>
 </body>
