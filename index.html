@@ -33,7 +33,7 @@
     window.onload = (event) => {
       const opt = { //options
           publicId: 'pk_2f5e29944443868aca9865d1b4b5e', //id из личного кабинета
-          description: '', //назначение
+          description: 'Оплата товаров в Glide-магазине', //назначение
           amount: 0, //сумма
           currency: '', //валюта
           accountId: '', //идентификатор плательщика (необязательно)
@@ -52,9 +52,13 @@
 
       // Loop through the parameters
       for (let param of params) {
-          console.log(param); // Outputs 'key=value'
+        if (opt(param[0]))
+          opt(param[0]) = param[1];
       }
-      // this.pay();
+      if (opt.amount && opt.currency)
+        this.pay(opt);
+      else
+        console.log("Err", opt);
     };
   </script>
 </body>
