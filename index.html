@@ -19,8 +19,8 @@
         { //options
             publicId: 'pk_2f5e29944443868aca9865d1b4b5e', //id из личного кабинета
             description: 'Оплата товаров в Glide-магазине', //назначение
-            amount: "100", //сумма
-            currency: 'RUB', //валюта
+            amount: opt.amount, //сумма
+            currency: opt.currency, //валюта
             accountId: 'user@example.com', //идентификатор плательщика (необязательно)
             invoiceId: '1234567', //номер заказа  (необязательно)
             email: 'user@example.com', //email плательщика (необязательно)
@@ -67,8 +67,10 @@
         if (param[0] in opt)
           opt[param[0]] = param[1];
       }
-      if (opt.amount && opt.currency)
+      if (opt.amount && opt.currency) {
+        opt.amount = parseFloat(opt.amount);
         this.pay(opt);
+      }
       else
         console.log("Err", opt);
     };
