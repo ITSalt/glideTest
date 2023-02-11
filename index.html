@@ -49,6 +49,9 @@
                   // Set content type
                   xhr.setRequestHeader('Content-Type', 'application/json');
 
+                  // Set the Access-Control-Allow-Origin header
+                  xhr.setRequestHeader('Access-Control-Allow-Origin', 'https://itsalt.github.io');
+
                   // Send request with data
                   xhr.send(JSON.stringify({paymentResult, options}));
 
