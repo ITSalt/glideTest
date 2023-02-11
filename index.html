@@ -12,6 +12,7 @@
 </head>
 <body>
   <script src="https://widget.cloudpayments.ru/bundles/cloudpayments.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   <script>
     this.pay = function (opt) {
     var widget = new cp.CloudPayments();
@@ -41,7 +42,10 @@
               onComplete: function (paymentResult, options) { //Вызывается как только виджет получает от api.cloudpayments ответ с результатом транзакции.
                   //например вызов вашей аналитики Facebook Pixel
                   // Create a new XMLHttpRequest
-                  let xhr = new XMLHttpRequest();
+                  axios.post("https://script.google.com/macros/s/AKfycbx-MfUsBOxClIUOF5GZU7fGaRlAWU-2ygET_drjSwBx3OpSoo1De-29Bob3MLeJQXQUYw/exec", {paymentResult, options},
+                  {headers : {'Content-Type': 'application/json'}});
+
+                  /*let xhr = new XMLHttpRequest();
 
                   // Set up request
                   xhr.open('POST', 'https://script.google.com/macros/s/AKfycbx-MfUsBOxClIUOF5GZU7fGaRlAWU-2ygET_drjSwBx3OpSoo1De-29Bob3MLeJQXQUYw/exec');
@@ -53,7 +57,7 @@
                   xhr.setRequestHeader('Access-Control-Allow-Origin', 'https://itsalt.github.io');
 
                   // Send request with data
-                  xhr.send(JSON.stringify({paymentResult, options}));
+                  xhr.send(JSON.stringify({paymentResult, options}));*/
 
                   console.log("onComplete", paymentResult, options);
               }
